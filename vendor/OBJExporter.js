@@ -8,7 +8,7 @@ THREE.OBJExporter.prototype = {
 
 	constructor: THREE.OBJExporter,
 
-	parse: function ( object ) {
+	parse: function ( input ) {
 
 		var output = '';
 
@@ -45,6 +45,9 @@ THREE.OBJExporter.prototype = {
 				var normals = geometry.getAttribute( 'normal' );
 				var uvs = geometry.getAttribute( 'uv' );
 				var indices = geometry.getIndex();
+				var numVertices = Math.min( vertices.count, geometry.drawRange.count - geometry.drawRange.start);
+				var verticesStart  = geometry.drawRange.start;
+					// this.drawRange = { start: 0, count: Infinity };
 
 				// name of the mesh object
 				output += 'o ' + mesh.name + '\n';
@@ -52,8 +55,7 @@ THREE.OBJExporter.prototype = {
 				// vertices
 
 				if( vertices !== undefined ) {
-
-					for ( i = 0, l = vertices.count; i < l; i ++, nbVertex++ ) {
+					for ( i = verticesStart, l = numVertices; i < l; i ++, nbVertex++ ) {
 
 						vertex.x = vertices.getX( i );
 						vertex.y = vertices.getY( i );
@@ -70,7 +72,7 @@ THREE.OBJExporter.prototype = {
 				}
 
 				// uvs
-
+/*
 				if( uvs !== undefined ) {
 
 					for ( i = 0, l = uvs.count; i < l; i ++, nbVertexUvs++ ) {
@@ -106,10 +108,10 @@ THREE.OBJExporter.prototype = {
 					}
 
 				}
-
+*/
 				// faces
 
-				if( indices !== null ) {
+					if( indices !== null ) {
 
 					for ( i = 0, l = indices.count; i < l; i += 3 ) {
 
@@ -128,7 +130,22 @@ THREE.OBJExporter.prototype = {
 
 				} else {
 
-					for ( i = 0, l = vertices.count; i < l; i += 3 ) {
+					var idx = 0;
+					for ( i = verticesStart, l = numVertices; i < l; i ++ ) {
+						for( m = 0; m < 3; m ++ ){
+
+							j = i + m + 1;
+							face[ m ] = ( indexVertex + j ) + '/' + ( uvs ? ( indexVertexUvs + j ) : '' ) + '/' + ( indexNormals + j );
+
+						}
+
+						// transform the face to export format
+						output += 'f ' + face.join( ' ' ) + "\n";
+
+					}
+
+/*
+					for ( i = verticesStart, l = numVertices; i < l; i += 3 ) {
 
 						for( m = 0; m < 3; m ++ ){
 
@@ -142,7 +159,7 @@ THREE.OBJExporter.prototype = {
 						output += 'f ' + face.join( ' ' ) + "\n";
 
 					}
-
+*/
 				}
 
 			} else {
@@ -233,21 +250,38 @@ THREE.OBJExporter.prototype = {
 
 		};
 
-		object.traverse( function ( child ) {
+		var parseObject = function ( object ) {
 
-			if ( child instanceof THREE.Mesh ) {
+			object.traverse( function ( child ) {
 
-				parseMesh( child );
+				if ( child instanceof THREE.Mesh ) {
+
+					parseMesh( child );
+
+				}
+
+				if ( child instanceof THREE.Line ) {
+
+					parseLine( child );
+
+				}
+
+			} );
+
+		}
+
+		if ( input instanceof Array ) {
+			for ( i = 0; i < input.length; i++ ) {
+
+				parseObject( input[ i ] );
 
 			}
 
-			if ( child instanceof THREE.Line ) {
+		} else {
 
-				parseLine( child );
+			parseObject( input );
 
-			}
-
-		} );
+		}
 
 		return output;
 

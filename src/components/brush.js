@@ -26,30 +26,29 @@ AFRAME.registerSystem('brush', {
     document.addEventListener('keyup', function (event) {
       if (event.keyCode === 79) {
         var exporter = new THREE.OBJExporter();
-        var object = document.querySelector('a-scene').object3D;
+        var object = this.strokes.map(function (stroke) { return stroke.object3D; });
 
+      	var link = document.createElement( 'a' );
+      	link.style.display = 'none';
+      	document.body.appendChild( link ); // Firefox workaround, see #6594
 
-        	var link = document.createElement( 'a' );
-        	link.style.display = 'none';
-        	document.body.appendChild( link ); // Firefox workaround, see #6594
+      	function save( blob, filename ) {
 
-        	function save( blob, filename ) {
+      		link.href = URL.createObjectURL( blob );
+      		link.download = filename || 'data.json';
+      		link.click();
 
-        		link.href = URL.createObjectURL( blob );
-        		link.download = filename || 'data.json';
-        		link.click();
+      		// URL.revokeObjectURL( url ); breaks Firefox...
 
-        		// URL.revokeObjectURL( url ); breaks Firefox...
+      	}
 
-        	}
+      	function saveString( text, filename ) {
 
-        	function saveString( text, filename ) {
+      		save( new Blob( [ text ], { type: 'text/plain' } ), filename );
 
-        		save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+      	}
 
-        	}
-
-        saveString(exporter.parse(object), 'model.obj');
+      saveString(exporter.parse(object), 'model.obj');
       }
       if (event.keyCode === 76) {
         this.loadBinary('apainter.bin');

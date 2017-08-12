@@ -222,10 +222,10 @@ AFRAME.registerComponent('ui', {
   },
 
   copyBrush: function () {
-    var brush = this.el.getAttribute('brush');
-    this.handEl.setAttribute('brush', 'brush', brush.brush);
-    this.handEl.setAttribute('brush', 'color', brush.color);
-    this.handEl.setAttribute('brush', 'size', brush.size);
+    var brush = this.el.parentEl.getAttribute('brush');
+    this.handEl.parentEl.setAttribute('brush', 'brush', brush.brush);
+    this.handEl.parentEl.setAttribute('brush', 'color', brush.color);
+    this.handEl.parentEl.setAttribute('brush', 'size', brush.size);
     this.colorHasChanged = true;
   },
 
@@ -259,14 +259,14 @@ AFRAME.registerComponent('ui', {
 
   onColorHistoryButtonDown: function (object) {
     var color = object.material.color.getHexString();
-    this.handEl.setAttribute('brush', 'color', '#' + color);
+    this.handEl.parentEl.setAttribute('brush', 'color', '#' + color);
   },
 
   onBrushDown: function (name) {
     var brushName = this.brushButtonsMapping[name];
     if (!brushName) { return; }
     this.selectBrushButton(name);
-    this.handEl.setAttribute('brush', 'brush', brushName.toLowerCase());
+    this.handEl.parentEl.setAttribute('brush', 'brush', brushName.toLowerCase());
   },
 
   selectBrushButton: function (brushName) {
@@ -305,7 +305,7 @@ AFRAME.registerComponent('ui', {
   updateColor: function () {
     var rgb = this.hsv2rgb(this.hsv);
     var color = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
-    this.handEl.setAttribute('brush', 'color', color);
+    this.handEl.parentEl.setAttribute('brush', 'color', color);
     this.colorHasChanged = true;
   },
 
@@ -377,7 +377,7 @@ AFRAME.registerComponent('ui', {
     slider.worldToLocal(position);
     var brushSize = (position.x - sliderBoundingBox.min.x) / sliderWidth;
     brushSize = brushSize * AFRAME.components.brush.schema.size.max;
-    this.handEl.setAttribute('brush', 'size', brushSize);
+    this.handEl.parentEl.setAttribute('brush', 'size', brushSize);
   },
 
   handleHover: function () {
@@ -586,8 +586,8 @@ AFRAME.registerComponent('ui', {
     this.initColorHistory();
     this.initBrushesMenu();
     this.setCursorTransparency();
-    this.updateColorUI(this.el.getAttribute('brush').color);
-    this.updateSizeSlider(this.el.getAttribute('brush').size);
+    this.updateColorUI(this.el.parentEl.getAttribute('brush').color);
+    this.updateSizeSlider(this.el.parentEl.getAttribute('brush').size);
   },
 
   initBrushesMenu: function () {
@@ -739,7 +739,7 @@ AFRAME.registerComponent('ui', {
         })
         .easing(AFRAME.TWEEN.Easing.Exponential.Out);
     tween.start();
-    this.el.setAttribute('brush', 'enabled', false);
+    this.el.parentEl.setAttribute('brush', 'enabled', false);
     this.rayEl.setAttribute('visible', false);
     this.closed = false;
   },
@@ -754,9 +754,9 @@ AFRAME.registerComponent('ui', {
 
   onIntersection: function (evt) {
     var visible = this.closed && this.system.opened;
-    if (this.el.components.brush.active) { return; }
+    if (this.el.parentEl.components.brush.active) { return; }
     this.rayEl.setAttribute('visible', !!visible);
-    this.el.setAttribute('brush', 'enabled', false);
+    this.el.parentEl.setAttribute('brush', 'enabled', false);
   },
 
   onIntersected: function (evt) {
@@ -791,7 +791,7 @@ AFRAME.registerComponent('ui', {
   syncUI: function () {
     var brush;
     if (!this.handEl || !this.objects) { return; }
-    brush = this.handEl.getAttribute('brush');
+    brush = this.handEl.parentEl.getAttribute('brush');
     this.updateSizeSlider(brush.size);
     this.updateColorUI(brush.color);
     this.updateColorHistory();
@@ -812,9 +812,9 @@ AFRAME.registerComponent('ui', {
   },
 
   updateColorHistory: function () {
-    var color = this.handEl && this.handEl.getAttribute('brush').color;
+    var color = this.handEl && this.handEl.parentEl.getAttribute('brush').color;
     var colorStack = this.colorStack;
-    if (!color) { color = this.el.components.brush.schema.color.default; }
+    if (!color) { color = this.el.parentEl.components.brush.schema.color.default; }
     this.objects.currentColor.material.color.set(color);
     for (var i = 0; i < colorStack.length; i++) {
       color = colorStack[colorStack.length - i - 1];
@@ -864,7 +864,7 @@ AFRAME.registerComponent('ui', {
   onIntersectionCleared: function () {
     this.checkMenuIntersections = false;
     this.rayEl.setAttribute('visible', false);
-    this.el.setAttribute('brush', 'enabled', true);
+    this.el.parentEl.setAttribute('brush', 'enabled', true);
   },
 
   onIntersectedCleared: function (evt) {
@@ -876,7 +876,7 @@ AFRAME.registerComponent('ui', {
     var color;
     var colorStack = this.colorStack;
     if (!this.colorHasChanged) { return; }
-    color = this.handEl.getAttribute('brush').color;
+    color = this.handEl.parentEl.getAttribute('brush').color;
     this.colorHasChanged = false;
     if (colorStack.length === 7) { colorStack.shift(); }
     colorStack.push(color);
@@ -921,7 +921,7 @@ AFRAME.registerComponent('ui', {
         })
         .easing(AFRAME.TWEEN.Easing.Exponential.Out);
     tween.start();
-    this.el.setAttribute('brush', 'enabled', true);
+    this.el.parentEl.setAttribute('brush', 'enabled', true);
     this.closed = true;
   }
 });

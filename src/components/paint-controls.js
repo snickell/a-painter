@@ -4,14 +4,14 @@ AFRAME.registerSystem('paint-controls', {
 
 /* globals AFRAME THREE */
 AFRAME.registerComponent('paint-controls', {
-  dependencies: ['brush'],
 
   schema: {
     hand: {default: 'left'}
   },
-
   init: function () {
     var el = this.el;
+    this.brushEl = this.el.parentEl;
+    
     var self = this;
     var highLightTextureUrl = 'assets/images/controller-pressed.png';
     this.controller = null;
@@ -37,10 +37,10 @@ AFRAME.registerComponent('paint-controls', {
           if (evt.detail.axis[0] === 0 && evt.detail.axis[1] === 0 || self.previousAxis === evt.detail.axis[1]) { return; }
 
           var delta = evt.detail.axis[1] / 300;
-          var size = el.components.brush.schema.size;
-          var value = THREE.Math.clamp(self.el.getAttribute('brush').size - delta, size.min, size.max);
+          var size = self.brushEl.components.brush.schema.size;
+          var value = THREE.Math.clamp(self.brushEl.getAttribute('brush').size - delta, size.min, size.max);
 
-          self.el.setAttribute('brush', 'size', value);
+          self.brushEl.setAttribute('brush', 'size', value);
         });
 
       } else if (controllerName === 'vive-controls') {
@@ -65,11 +65,11 @@ AFRAME.registerComponent('paint-controls', {
 
           self.startAxis = currentAxis;
 
-          var startValue = self.el.getAttribute('brush').size;
-          var size = el.components.brush.schema.size;
+          var startValue = self.brushEl.getAttribute('brush').size;
+          var size = self.brushEl.components.brush.schema.size;
           var value = THREE.Math.clamp(startValue - delta, size.min, size.max);
 
-          self.el.setAttribute('brush', 'size', value);
+          self.brushEl.setAttribute('brush', 'size', value);
         });
 
         el.addEventListener('trackpadtouchstart', function () {
@@ -181,8 +181,8 @@ AFRAME.registerComponent('paint-controls', {
 
     this.modelLoaded = true;
 
-    this.changeBrushSize(this.el.components.brush.data.size);
-    this.changeBrushColor(this.el.components.brush.color);
+    this.changeBrushSize(this.brushEl.components.brush.data.size);
+    this.changeBrushColor(this.brushEl.components.brush.color);
   },
 
   onButtonEvent: function (id, evtName) {

@@ -31,7 +31,7 @@ AFRAME.registerBrush = function (name, definition, options) {
     options: Object.assign(defaultOptions, options),
     reset: function () {},
     tick: function (timeoffset, delta) {},
-    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {},
+    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {},
     getJSON: function (system) {
       var points = [];
       for (var i = 0; i < this.data.points.length; i++) {
@@ -88,7 +88,8 @@ AFRAME.registerBrush = function (name, definition, options) {
         points: [],
         size: brushSize,
         prevPosition: null,
-        prevPointerPosition: null,
+        prevPointerPosition1: null,
+        prevPointerPosition2: null,        
         numPoints: 0,
         color: color.clone()
       };
@@ -97,12 +98,12 @@ AFRAME.registerBrush = function (name, definition, options) {
   }
 
   function wrapAddPoint (addPointMethod) {
-    return function addPoint (position, orientation, pointerPosition, pressure, timestamp) {
+    return function addPoint (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
       if ((this.data.prevPosition && this.data.prevPosition.distanceTo(position) <= this.options.spacing) ||
           this.options.maxPoints !== 0 && this.data.numPoints >= this.options.maxPoints) {
         return;
       }
-      if (addPointMethod.call(this, position, orientation, pointerPosition, pressure, timestamp)) {
+      if (addPointMethod.call(this, position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp)) {
         this.data.numPoints++;
         this.data.points.push({
           'position': position.clone(),
@@ -112,7 +113,8 @@ AFRAME.registerBrush = function (name, definition, options) {
         });
 
         this.data.prevPosition = position.clone();
-        this.data.prevPointerPosition = pointerPosition.clone();
+        this.data.prevPointerPosition1 = pointerPosition1.clone();
+        this.data.prevPointerPosition2 = pointerPosition2.clone();        
       }
     };
   }
@@ -203,7 +205,7 @@ AFRAME.registerSystem('brush', {
         var timestamp = 0;
 
         var pointerPosition = this.getPointerPosition(position, orientation);
-        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+        stroke.addPoint(position, orientation, pointerPosition, pointerPosition, pressure, timestamp);
       }
     }
   },
@@ -275,7 +277,6 @@ AFRAME.registerSystem('brush', {
     return dataViews;
   },
   getPointerPosition: (function () {
-    var pointerPosition = new THREE.Vector3();
     var controllerOffset = {
       'vive-controls': {
         vec: new THREE.Vector3(0, 0.7, 1),
@@ -287,7 +288,7 @@ AFRAME.registerSystem('brush', {
       }
     };
 
-    return function getPointerPosition (position, orientation) {
+    return function getPointerPosition (position, orientation, pointerPosition) {
       if (!this.controllerName) {
         return position;
       }
@@ -322,13 +323,16 @@ AFRAME.registerSystem('brush', {
       for (var j = 0; j < strokeData.points.length; j++) {
         var point = strokeData.points[j];
 
-        var position = new THREE.Vector3().fromArray(point.position);
+        var position1 = new THREE.Vector3().fromArray(point.position);
+        var position2 = point.position2 ? new THREE.Vector3().fromArray(point.position2) : position1;
         var orientation = new THREE.Quaternion().fromArray(point.orientation);
         var pressure = point.pressure;
         var timestamp = point.timestamp;
 
-        var pointerPosition = this.getPointerPosition(position, orientation);
-        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+        var pointerPosition1 = this.getPointerPosition(position1, orientation);
+        var pointerPosition2 = this.getPointerPosition(position2, orientation);
+        
+        stroke.addPoint(position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp);
       }
     }
   },
@@ -367,8 +371,12 @@ AFRAME.registerSystem('brush', {
         var pressure = binaryManager.readFloat();
         var timestamp = binaryManager.readUint32();
 
-        var pointerPosition = this.getPointerPosition(position, orientation);
-        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+        // FIXME: how do we update the binary format smoothly to add an extra field
+        // namely pointerPosition2, and still be compatible with old version binary files?
+        // currently we just load one position and do "single point style"
+        
+        var pointerPosition1 = this.getPointerPosition(position, orientation);
+        stroke.addPoint(position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp);
       }
     }
   },

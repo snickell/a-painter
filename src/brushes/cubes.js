@@ -11,12 +11,12 @@ AFRAME.registerBrush('cubes',
       });
       this.geometry = new THREE.BoxGeometry(1, 1, 1);
     },
-    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
       var box = new THREE.Mesh(this.geometry, this.material);
 
       var sca = pressure * this.data.size * Math.random();
       box.scale.set(sca, sca, sca);
-      box.position.copy(pointerPosition);
+      box.position.copy(pointerPosition1);
       box.rotation.copy(orientation);
 
       this.object3D.add(box);

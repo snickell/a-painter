@@ -59,7 +59,7 @@
       });
     },
 
-    addPoint: function (position, rotation, pointerPosition, pressure, timestamp) {
+    addPoint: function (position, rotation, pointerPosition1, pointerPosition2, pressure, timestamp) {
       // brush side
       var pi2 = Math.PI / 2;
       var dir = new THREE.Vector3();
@@ -81,10 +81,12 @@
         brushAngle += this.currAngle;
       }
 
-      var a = pointerPosition.clone().add(dir.applyAxisAngle(axis, brushAngle).clone().multiplyScalar(brushSize));
-      var b = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
-      var c = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
-      var d = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).multiplyScalar(brushSize));
+      // FIXME: which of pointerPosition1 and pointerPosition2 should we use for each of these
+      // currently we ignore pointerPosition2, but maybe one of these would be cool to be mapped
+      var a = pointerPosition1.clone().add(dir.applyAxisAngle(axis, brushAngle).clone().multiplyScalar(brushSize));
+      var b = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
+      var c = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
+      var d = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).multiplyScalar(brushSize));
 
       var nidx = this.idx;
       // triangle 1

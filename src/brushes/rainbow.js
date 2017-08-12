@@ -59,7 +59,7 @@
 
         this.object3D.add(mesh);
       },
-      addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+      addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
         var uv = 0;
         for (i = 0; i < this.data.numPoints; i++) {
           this.uvs[ uv++ ] = i / (this.data.numPoints - 1);
@@ -74,8 +74,8 @@
         direction.applyQuaternion(orientation);
         direction.normalize();
 
-        var posA = pointerPosition.clone();
-        var posB = pointerPosition.clone();
+        var posA = pointerPosition1.clone();
+        var posB = pointerPosition2.clone();
         var brushSize = this.data.size * pressure;
         posA.add(direction.clone().multiplyScalar(brushSize / 2));
         posB.add(direction.clone().multiplyScalar(-brushSize / 2));

@@ -14,7 +14,7 @@ AFRAME.registerBrush('spheres',
     },
     // This function is called every time we need to add a point to our stroke
     // It should returns true if the point is added correctly, false otherwise.
-    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
       // Create a new sphere mesh to insert at the given position
       var sphere = new THREE.Mesh(this.geometry, this.material);
 
@@ -27,7 +27,7 @@ AFRAME.registerBrush('spheres',
       sphere.phase = Math.random() * Math.PI * 2;
 
       // Set the position of the sphere to match the controller positoin
-      sphere.position.copy(pointerPosition);
+      sphere.position.copy(pointerPosition1);
       sphere.rotation.copy(orientation);
 
       // Add the sphere to the object3D

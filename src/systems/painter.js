@@ -90,7 +90,7 @@ AFRAME.registerSystem('painter', {
         var index = brushesNames.indexOf(hands[0].components.brush.data.brush);
         index = (index + 1) % brushesNames.length;
         [].forEach.call(hands, function (hand) {
-          hand.setAttribute('brush', 'brush', brushesNames[index]);
+          hand.parentEl.setAttribute('brush', 'brush', brushesNames[index]);
         });
       }
       if (event.keyCode === 82) {

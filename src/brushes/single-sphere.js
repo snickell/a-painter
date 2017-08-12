@@ -14,13 +14,13 @@ AFRAME.registerBrush('single-sphere',
       this.object3D.add(this.mesh);
       this.mesh.visible = false
     },
-    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
       if (!this.firstPoint) {
-        this.firstPoint = pointerPosition.clone();
+        this.firstPoint = pointerPosition1.clone();
         this.mesh.position.set(this.firstPoint.x, this.firstPoint.y, this.firstPoint.z)
       }
       this.mesh.visible = true
-      var distance = this.firstPoint.distanceTo(pointerPosition);
+      var distance = this.firstPoint.distanceTo(pointerPosition1);
       this.mesh.scale.set(distance, distance, distance);
       return true;
     }

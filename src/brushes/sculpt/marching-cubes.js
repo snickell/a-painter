@@ -150,7 +150,6 @@ THREE.MarchingCubes = function ( resolution, material, enableUvs, enableColors )
 	// (this is where most of time is spent - it's inner work of O(n3) loop )
 
 	function polygonize( fx, fy, fz, q, isol, renderCallback ) {
-
 		// cache indices
 		var q1 = q + 1,
 			qy = q + scope.yd,
@@ -426,7 +425,6 @@ THREE.MarchingCubes = function ( resolution, material, enableUvs, enableColors )
 	};
 
 	this.end = function ( renderCallback ) {
-
 		if ( this.count === 0 ) return;
 
 		for ( var i = this.count * 3; i < this.positionArray.length; i ++ ) {
@@ -462,7 +460,6 @@ THREE.MarchingCubes = function ( resolution, material, enableUvs, enableColors )
 	// a fixed distance, determined by strength and subtract.
 
 	this.addBall = function ( ballx, bally, ballz, strength, subtract ) {
-
 		var sign = Math.sign( strength );
 		strength = Math.abs( strength );
 

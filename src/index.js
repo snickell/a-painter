@@ -20,9 +20,13 @@ require('./components/ui.js');
 require('./components/ui-raycaster.js');
 
 require('./brushes/potters-wheel.js');
+require('./brushes/sculpt/marching-cubes.js');
+require('./brushes/sculpt/sculpt.js');
+
 require('./brushes/line.js');
 require('./brushes/stamp.js');
 require('./brushes/spheres.js');
 require('./brushes/cubes.js');
 require('./brushes/rainbow.js');
 require('./brushes/single-sphere.js');
+

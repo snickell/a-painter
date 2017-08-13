@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	window.saveAs = __webpack_require__(1).saveAs;
 
@@ -73,32 +73,32 @@
 	__webpack_require__(24);
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
 	var saveAs=saveAs||function(e){"use strict";if(typeof e==="undefined"||typeof navigator!=="undefined"&&/MSIE [1-9]\./.test(navigator.userAgent)){return}var t=e.document,n=function(){return e.URL||e.webkitURL||e},r=t.createElementNS("http://www.w3.org/1999/xhtml","a"),o="download"in r,i=function(e){var t=new MouseEvent("click");e.dispatchEvent(t)},a=/constructor/i.test(e.HTMLElement),f=/CriOS\/[\d]+/.test(navigator.userAgent),u=function(t){(e.setImmediate||e.setTimeout)(function(){throw t},0)},d="application/octet-stream",s=1e3*40,c=function(e){var t=function(){if(typeof e==="string"){n().revokeObjectURL(e)}else{e.remove()}};setTimeout(t,s)},l=function(e,t,n){t=[].concat(t);var r=t.length;while(r--){var o=e["on"+t[r]];if(typeof o==="function"){try{o.call(e,n||e)}catch(i){u(i)}}}},p=function(e){if(/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(e.type)){return new Blob([String.fromCharCode(65279),e],{type:e.type})}return e},v=function(t,u,s){if(!s){t=p(t)}var v=this,w=t.type,m=w===d,y,h=function(){l(v,"writestart progress write writeend".split(" "))},S=function(){if((f||m&&a)&&e.FileReader){var r=new FileReader;r.onloadend=function(){var t=f?r.result:r.result.replace(/^data:[^;]*;/,"data:attachment/file;");var n=e.open(t,"_blank");if(!n)e.location.href=t;t=undefined;v.readyState=v.DONE;h()};r.readAsDataURL(t);v.readyState=v.INIT;return}if(!y){y=n().createObjectURL(t)}if(m){e.location.href=y}else{var o=e.open(y,"_blank");if(!o){e.location.href=y}}v.readyState=v.DONE;h();c(y)};v.readyState=v.INIT;if(o){y=n().createObjectURL(t);setTimeout(function(){r.href=y;r.download=u;i(r);h();c(y);v.readyState=v.DONE});return}S()},w=v.prototype,m=function(e,t,n){return new v(e,t||e.name||"download",n)};if(typeof navigator!=="undefined"&&navigator.msSaveOrOpenBlob){return function(e,t,n){t=t||e.name||"download";if(!n){e=p(e)}return navigator.msSaveOrOpenBlob(e,t)}}w.abort=function(){};w.readyState=w.INIT=0;w.WRITING=1;w.DONE=2;w.error=w.onwritestart=w.onprogress=w.onwrite=w.onabort=w.onerror=w.onwriteend=null;return m}(typeof self!=="undefined"&&self||typeof window!=="undefined"&&window||this.content);if(typeof module!=="undefined"&&module.exports){module.exports.saveAs=saveAs}else if("function"!=="undefined"&&__webpack_require__(2)!==null&&__webpack_require__(3)!==null){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function(){return saveAs}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__))}
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME Image FileReader */
 	window.addEventListener('load', function (event) {
@@ -197,9 +197,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals THREE */
 	window.BinaryManager = function (buffer) {
@@ -300,9 +300,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * @author qiao / https://github.com/qiao
@@ -1318,9 +1318,9 @@
 	} );
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	Number.prototype.toNumFixed = function (num) {
 	  return parseFloat(this.toFixed(num));
@@ -1334,9 +1334,9 @@
 	}
 
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* global Clipboard */
 	window.addEventListener('load', function (event) {
@@ -1368,9 +1368,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE BinaryManager */
 	var VERSION = 1;
@@ -1405,7 +1405,7 @@
 	    options: Object.assign(defaultOptions, options),
 	    reset: function () {},
 	    tick: function (timeoffset, delta) {},
-	    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {},
+	    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {},
 	    getJSON: function (system) {
 	      var points = [];
 	      for (var i = 0; i < this.data.points.length; i++) {
@@ -1462,7 +1462,8 @@
 	        points: [],
 	        size: brushSize,
 	        prevPosition: null,
-	        prevPointerPosition: null,
+	        prevPointerPosition1: null,
+	        prevPointerPosition2: null,        
 	        numPoints: 0,
 	        color: color.clone()
 	      };
@@ -1471,12 +1472,12 @@
 	  }
 
 	  function wrapAddPoint (addPointMethod) {
-	    return function addPoint (position, orientation, pointerPosition, pressure, timestamp) {
+	    return function addPoint (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      if ((this.data.prevPosition && this.data.prevPosition.distanceTo(position) <= this.options.spacing) ||
 	          this.options.maxPoints !== 0 && this.data.numPoints >= this.options.maxPoints) {
 	        return;
 	      }
-	      if (addPointMethod.call(this, position, orientation, pointerPosition, pressure, timestamp)) {
+	      if (addPointMethod.call(this, position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp)) {
 	        this.data.numPoints++;
 	        this.data.points.push({
 	          'position': position.clone(),
@@ -1486,7 +1487,8 @@
 	        });
 
 	        this.data.prevPosition = position.clone();
-	        this.data.prevPointerPosition = pointerPosition.clone();
+	        this.data.prevPointerPosition1 = pointerPosition1.clone();
+	        this.data.prevPointerPosition2 = pointerPosition2.clone();        
 	      }
 	    };
 	  }
@@ -1577,7 +1579,7 @@
 	        var timestamp = 0;
 
 	        var pointerPosition = this.getPointerPosition(position, orientation);
-	        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+	        stroke.addPoint(position, orientation, pointerPosition, pointerPosition, pressure, timestamp);
 	      }
 	    }
 	  },
@@ -1649,7 +1651,6 @@
 	    return dataViews;
 	  },
 	  getPointerPosition: (function () {
-	    var pointerPosition = new THREE.Vector3();
 	    var controllerOffset = {
 	      'vive-controls': {
 	        vec: new THREE.Vector3(0, 0.7, 1),
@@ -1661,7 +1662,7 @@
 	      }
 	    };
 
-	    return function getPointerPosition (position, orientation) {
+	    return function getPointerPosition (position, orientation, pointerPosition) {
 	      if (!this.controllerName) {
 	        return position;
 	      }
@@ -1696,13 +1697,16 @@
 	      for (var j = 0; j < strokeData.points.length; j++) {
 	        var point = strokeData.points[j];
 
-	        var position = new THREE.Vector3().fromArray(point.position);
+	        var position1 = new THREE.Vector3().fromArray(point.position);
+	        var position2 = point.position2 ? new THREE.Vector3().fromArray(point.position2) : position1;
 	        var orientation = new THREE.Quaternion().fromArray(point.orientation);
 	        var pressure = point.pressure;
 	        var timestamp = point.timestamp;
 
-	        var pointerPosition = this.getPointerPosition(position, orientation);
-	        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+	        var pointerPosition1 = this.getPointerPosition(position1, orientation);
+	        var pointerPosition2 = this.getPointerPosition(position2, orientation);
+	        
+	        stroke.addPoint(position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp);
 	      }
 	    }
 	  },
@@ -1741,8 +1745,12 @@
 	        var pressure = binaryManager.readFloat();
 	        var timestamp = binaryManager.readUint32();
 
-	        var pointerPosition = this.getPointerPosition(position, orientation);
-	        stroke.addPoint(position, orientation, pointerPosition, pressure, timestamp);
+	        // FIXME: how do we update the binary format smoothly to add an extra field
+	        // namely pointerPosition2, and still be compatible with old version binary files?
+	        // currently we just load one position and do "single point style"
+	        
+	        var pointerPosition1 = this.getPointerPosition(position, orientation);
+	        stroke.addPoint(position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp);
 	      }
 	    }
 	  },
@@ -1766,9 +1774,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME */
 	AFRAME.registerSystem('ui', {
@@ -1800,9 +1808,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* global AFRAME Blob uploadcare */
 
@@ -1896,7 +1904,7 @@
 	        var index = brushesNames.indexOf(hands[0].components.brush.data.brush);
 	        index = (index + 1) % brushesNames.length;
 	        [].forEach.call(hands, function (hand) {
-	          hand.setAttribute('brush', 'brush', brushesNames[index]);
+	          hand.parentEl.setAttribute('brush', 'brush', brushesNames[index]);
 	        });
 	      }
 	      if (event.keyCode === 82) {
@@ -1983,16 +1991,16 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	AFRAME.registerComponent('brush', {
 	  schema: {
-	    color: {type: 'color', default: '#ef2d5e'},
-	    size: {default: 0.01, min: 0.001, max: 0.3},
-	    brush: {default: 'flat'},
+	    color: { type: 'color', default: '#ef2d5e' },
+	    size: { default: 0.01, min: 0.001, max: 0.3 },
+	    brush: { default: 'flat' },
 	    enabled: { default: true }
 	  },
 	  init: function () {
@@ -2002,8 +2010,14 @@
 	    this.el.emit('brushcolor-changed', {color: this.color});
 	    this.el.emit('brushsize-changed', {brushSize: data.size});
 
-	    this.active = false;
-	    this.obj = this.el.object3D;
+	    this.activeL = false;
+	    this.activeR = false;
+
+	    const leftHandEl = this.el.querySelector("#left-hand");
+	    const rightHandEl = this.el.querySelector("#right-hand");
+
+	    this.leftHandObj = leftHandEl.object3D;
+	    this.rightHandObj = rightHandEl.object3D;
 
 	    this.currentStroke = null;
 	    this.strokeEntities = [];
@@ -2018,18 +2032,19 @@
 	    var self = this;
 
 	    this.previousAxis = 0;
-	/*
-	    this.el.addEventListener('axismove', function (evt) {
-	      if (evt.detail.axis[0] === 0 && evt.detail.axis[1] === 0 || this.previousAxis === evt.detail.axis[1]) {
-	        return;
-	      }
 
-	      this.previousAxis = evt.detail.axis[1];
-	      var size = (evt.detail.axis[1] + 1) / 2 * self.schema.size.max;
+	    /*
+	        this.el.addEventListener('axismove', function (evt) {
+	        if (evt.detail.axis[0] === 0 && evt.detail.axis[1] === 0 || this.previousAxis === evt.detail.axis[1]) {
+	            return;
+	        }
 
-	      self.el.setAttribute('brush', 'size', size);
-	    });
-	*/
+	        this.previousAxis = evt.detail.axis[1];
+	        var size = (evt.detail.axis[1] + 1) / 2 * self.schema.size.max;
+
+	        self.el.parentEl.setAttribute('brush', 'size', size);
+	        });
+	    */
 	    this.el.addEventListener('buttondown', function (evt) {
 	      if (!self.data.enabled) { return; }
 	      // Grip
@@ -2038,26 +2053,36 @@
 	      }
 	    });
 
-	    this.el.addEventListener('buttonchanged', function (evt) {
-	      if (!self.data.enabled) { return; }
+	    const onButtonChanged = (evt, leftHand) => {
 	      // Trigger
 	      if (evt.detail.id === 1) {
 	        var value = evt.detail.state.value;
-	        self.sizeModifier = value;
-	        if (value > 0.1) {
-	          if (!self.active) {
-	            self.startNewStroke();
-	            self.active = true;
+	        this.sizeModifier = value;
+
+	        var currentHandActive = value > 0.1;
+	        if (currentHandActive) {
+	          // if neither brush is active, start a new stroke
+	          if (!this.activeL && !this.activeR) {
+	            this.startNewStroke();
+	            console.log("Starting stroke");
 	          }
+	        }
+	        if (leftHand) {
+	          this.activeL = currentHandActive;
 	        } else {
-	          if (self.active) {
-	            self.previousEntity = self.currentEntity;
-	            self.currentStroke = null;
-	          }
-	          self.active = false;
+	          this.activeR = currentHandActive;
+	        }
+
+	        // if at the end both strokes are inactive, cleanup
+	        if (!this.activeL && !this.activeR) {
+	          this.previousEntity = this.currentEntity;
+	          this.currentStroke = null;
 	        }
 	      }
-	    });
+	    }
+
+	    rightHandEl.addEventListener('buttonchanged', evt => onButtonChanged(evt, false));
+	    leftHandEl.addEventListener('buttonchanged', evt => onButtonChanged(evt, true));
 	  },
 	  update: function (oldData) {
 	    var data = this.data;
@@ -2069,16 +2094,38 @@
 	      this.el.emit('brushsize-changed', {size: data.size});
 	    }
 	  },
-	  tick: (function () {
-	    var position = new THREE.Vector3();
-	    var rotation = new THREE.Quaternion();
-	    var scale = new THREE.Vector3();
+	  tick: (() => {
+	    var positionL = new THREE.Vector3();
+	    var rotationL = new THREE.Quaternion();
+	    var scaleL = new THREE.Vector3();
 
-	    return function tick (time, delta) {
-	      if (this.currentStroke && this.active) {
-	        this.obj.matrixWorld.decompose(position, rotation, scale);
-	        var pointerPosition = this.system.getPointerPosition(position, rotation);
-	        this.currentStroke.addPoint(position, rotation, pointerPosition, this.sizeModifier, time);
+	    var positionR = new THREE.Vector3();
+	    var rotationR = new THREE.Quaternion();
+	    var scaleR = new THREE.Vector3();
+
+	    let pointerPosR = new THREE.Vector3();
+	    let pointerPosL = new THREE.Vector3();
+	    return function tick(time, delta) {
+	      if (this.activeL || this.activeR) {
+	        this.leftHandObj.matrixWorld.decompose(positionL, rotationL, scaleL);
+	        pointerPosL = this.system.getPointerPosition(positionL, rotationL, pointerPosL);
+
+	        this.rightHandObj.matrixWorld.decompose(positionR, rotationR, scaleR);
+	        pointerPosR = this.system.getPointerPosition(positionR, rotationR, pointerPosR);
+
+	        // if both brushes are active, use both pointerPos, else both pointerPos are from the active brush
+	        const point1 = this.activeL ? pointerPosL : pointerPosR;
+	        const point2 = this.activeL && !this.activeR ? pointerPosL : pointerPosR;
+
+	        // FIXME: really we should be passing BOTH rotationL and rotationR
+	        // and also positionL and position R
+	        // so that brushes can make use of multiple-controller rotation effects
+	        // (e.g. a lathe brush might use this)
+	        const rotation = this.activeL ? rotationL : rotationR;
+	        const position = this.activeL ? positionL : positionR;
+
+	        this.currentStroke.addPoint(position, rotation, point1, point2, this.sizeModifier, time);
+
 	      }
 	    };
 	  })(),
@@ -2089,9 +2136,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* global AFRAME */
 	var utils = AFRAME.utils;
@@ -2132,9 +2179,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 
@@ -2165,9 +2212,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	AFRAME.registerComponent('orbit-controls', {
 	  dependencies: ['camera'],
@@ -2242,9 +2289,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	AFRAME.registerSystem('paint-controls', {
 	  numberStrokes: 0
@@ -2252,14 +2299,14 @@
 
 	/* globals AFRAME THREE */
 	AFRAME.registerComponent('paint-controls', {
-	  dependencies: ['brush'],
 
 	  schema: {
 	    hand: {default: 'left'}
 	  },
-
 	  init: function () {
 	    var el = this.el;
+	    this.brushEl = this.el.parentEl;
+	    
 	    var self = this;
 	    var highLightTextureUrl = 'assets/images/controller-pressed.png';
 	    this.controller = null;
@@ -2285,10 +2332,10 @@
 	          if (evt.detail.axis[0] === 0 && evt.detail.axis[1] === 0 || self.previousAxis === evt.detail.axis[1]) { return; }
 
 	          var delta = evt.detail.axis[1] / 300;
-	          var size = el.components.brush.schema.size;
-	          var value = THREE.Math.clamp(self.el.getAttribute('brush').size - delta, size.min, size.max);
+	          var size = self.brushEl.components.brush.schema.size;
+	          var value = THREE.Math.clamp(self.brushEl.getAttribute('brush').size - delta, size.min, size.max);
 
-	          self.el.setAttribute('brush', 'size', value);
+	          self.brushEl.setAttribute('brush', 'size', value);
 	        });
 
 	      } else if (controllerName === 'vive-controls') {
@@ -2313,11 +2360,11 @@
 
 	          self.startAxis = currentAxis;
 
-	          var startValue = self.el.getAttribute('brush').size;
-	          var size = el.components.brush.schema.size;
+	          var startValue = self.brushEl.getAttribute('brush').size;
+	          var size = self.brushEl.components.brush.schema.size;
 	          var value = THREE.Math.clamp(startValue - delta, size.min, size.max);
 
-	          self.el.setAttribute('brush', 'size', value);
+	          self.brushEl.setAttribute('brush', 'size', value);
 	        });
 
 	        el.addEventListener('trackpadtouchstart', function () {
@@ -2429,8 +2476,8 @@
 
 	    this.modelLoaded = true;
 
-	    this.changeBrushSize(this.el.components.brush.data.size);
-	    this.changeBrushColor(this.el.components.brush.color);
+	    this.changeBrushSize(this.brushEl.components.brush.data.size);
+	    this.changeBrushColor(this.brushEl.components.brush.color);
 	  },
 
 	  onButtonEvent: function (id, evtName) {
@@ -2458,9 +2505,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	AFRAME.registerComponent('ui', {
@@ -2686,10 +2733,10 @@
 	  },
 
 	  copyBrush: function () {
-	    var brush = this.el.getAttribute('brush');
-	    this.handEl.setAttribute('brush', 'brush', brush.brush);
-	    this.handEl.setAttribute('brush', 'color', brush.color);
-	    this.handEl.setAttribute('brush', 'size', brush.size);
+	    var brush = this.el.parentEl.getAttribute('brush');
+	    this.handEl.parentEl.setAttribute('brush', 'brush', brush.brush);
+	    this.handEl.parentEl.setAttribute('brush', 'color', brush.color);
+	    this.handEl.parentEl.setAttribute('brush', 'size', brush.size);
 	    this.colorHasChanged = true;
 	  },
 
@@ -2723,14 +2770,14 @@
 
 	  onColorHistoryButtonDown: function (object) {
 	    var color = object.material.color.getHexString();
-	    this.handEl.setAttribute('brush', 'color', '#' + color);
+	    this.handEl.parentEl.setAttribute('brush', 'color', '#' + color);
 	  },
 
 	  onBrushDown: function (name) {
 	    var brushName = this.brushButtonsMapping[name];
 	    if (!brushName) { return; }
 	    this.selectBrushButton(name);
-	    this.handEl.setAttribute('brush', 'brush', brushName.toLowerCase());
+	    this.handEl.parentEl.setAttribute('brush', 'brush', brushName.toLowerCase());
 	  },
 
 	  selectBrushButton: function (brushName) {
@@ -2769,7 +2816,7 @@
 	  updateColor: function () {
 	    var rgb = this.hsv2rgb(this.hsv);
 	    var color = 'rgb(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')';
-	    this.handEl.setAttribute('brush', 'color', color);
+	    this.handEl.parentEl.setAttribute('brush', 'color', color);
 	    this.colorHasChanged = true;
 	  },
 
@@ -2841,7 +2888,7 @@
 	    slider.worldToLocal(position);
 	    var brushSize = (position.x - sliderBoundingBox.min.x) / sliderWidth;
 	    brushSize = brushSize * AFRAME.components.brush.schema.size.max;
-	    this.handEl.setAttribute('brush', 'size', brushSize);
+	    this.handEl.parentEl.setAttribute('brush', 'size', brushSize);
 	  },
 
 	  handleHover: function () {
@@ -3050,8 +3097,8 @@
 	    this.initColorHistory();
 	    this.initBrushesMenu();
 	    this.setCursorTransparency();
-	    this.updateColorUI(this.el.getAttribute('brush').color);
-	    this.updateSizeSlider(this.el.getAttribute('brush').size);
+	    this.updateColorUI(this.el.parentEl.getAttribute('brush').color);
+	    this.updateSizeSlider(this.el.parentEl.getAttribute('brush').size);
 	  },
 
 	  initBrushesMenu: function () {
@@ -3203,7 +3250,7 @@
 	        })
 	        .easing(AFRAME.TWEEN.Easing.Exponential.Out);
 	    tween.start();
-	    this.el.setAttribute('brush', 'enabled', false);
+	    this.el.parentEl.setAttribute('brush', 'enabled', false);
 	    this.rayEl.setAttribute('visible', false);
 	    this.closed = false;
 	  },
@@ -3218,9 +3265,9 @@
 
 	  onIntersection: function (evt) {
 	    var visible = this.closed && this.system.opened;
-	    if (this.el.components.brush.active) { return; }
+	    if (this.el.parentEl.components.brush.active) { return; }
 	    this.rayEl.setAttribute('visible', !!visible);
-	    this.el.setAttribute('brush', 'enabled', false);
+	    this.el.parentEl.setAttribute('brush', 'enabled', false);
 	  },
 
 	  onIntersected: function (evt) {
@@ -3255,7 +3302,7 @@
 	  syncUI: function () {
 	    var brush;
 	    if (!this.handEl || !this.objects) { return; }
-	    brush = this.handEl.getAttribute('brush');
+	    brush = this.handEl.parentEl.getAttribute('brush');
 	    this.updateSizeSlider(brush.size);
 	    this.updateColorUI(brush.color);
 	    this.updateColorHistory();
@@ -3276,9 +3323,9 @@
 	  },
 
 	  updateColorHistory: function () {
-	    var color = this.handEl && this.handEl.getAttribute('brush').color;
+	    var color = this.handEl && this.handEl.parentEl.getAttribute('brush').color;
 	    var colorStack = this.colorStack;
-	    if (!color) { color = this.el.components.brush.schema.color.default; }
+	    if (!color) { color = this.el.parentEl.components.brush.schema.color.default; }
 	    this.objects.currentColor.material.color.set(color);
 	    for (var i = 0; i < colorStack.length; i++) {
 	      color = colorStack[colorStack.length - i - 1];
@@ -3328,7 +3375,7 @@
 	  onIntersectionCleared: function () {
 	    this.checkMenuIntersections = false;
 	    this.rayEl.setAttribute('visible', false);
-	    this.el.setAttribute('brush', 'enabled', true);
+	    this.el.parentEl.setAttribute('brush', 'enabled', true);
 	  },
 
 	  onIntersectedCleared: function (evt) {
@@ -3340,7 +3387,7 @@
 	    var color;
 	    var colorStack = this.colorStack;
 	    if (!this.colorHasChanged) { return; }
-	    color = this.handEl.getAttribute('brush').color;
+	    color = this.handEl.parentEl.getAttribute('brush').color;
 	    this.colorHasChanged = false;
 	    if (colorStack.length === 7) { colorStack.shift(); }
 	    colorStack.push(color);
@@ -3385,15 +3432,15 @@
 	        })
 	        .easing(AFRAME.TWEEN.Easing.Exponential.Out);
 	    tween.start();
-	    this.el.setAttribute('brush', 'enabled', true);
+	    this.el.parentEl.setAttribute('brush', 'enabled', true);
 	    this.closed = true;
 	  }
 	});
 
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	/**
@@ -3556,9 +3603,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	(function () {
@@ -3622,7 +3669,7 @@
 	        return new THREE.MeshBasicMaterial(options);
 	      }
 	    },
-	    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+	    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      var uv = 0;
 	      for (i = 0; i < this.data.numPoints; i++) {
 	        this.uvs[ uv++ ] = i / (this.data.numPoints - 1);
@@ -3637,8 +3684,8 @@
 	      direction.applyQuaternion(orientation);
 	      direction.normalize();
 
-	      var posA = pointerPosition.clone();
-	      var posB = pointerPosition.clone();
+	      var posA = pointerPosition1.clone();
+	      var posB = pointerPosition2.clone();
 	      var brushSize = this.data.size * pressure;
 	      posA.add(direction.clone().multiplyScalar(brushSize / 2));
 	      posB.add(direction.clone().multiplyScalar(-brushSize / 2));
@@ -3859,9 +3906,9 @@
 	})();
 
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* global AFRAME THREE */
 	(function () {
@@ -3924,7 +3971,7 @@
 	      });
 	    },
 
-	    addPoint: function (position, rotation, pointerPosition, pressure, timestamp) {
+	    addPoint: function (position, rotation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      // brush side
 	      var pi2 = Math.PI / 2;
 	      var dir = new THREE.Vector3();
@@ -3946,10 +3993,12 @@
 	        brushAngle += this.currAngle;
 	      }
 
-	      var a = pointerPosition.clone().add(dir.applyAxisAngle(axis, brushAngle).clone().multiplyScalar(brushSize));
-	      var b = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
-	      var c = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
-	      var d = pointerPosition.clone().add(dir.applyAxisAngle(axis, pi2).multiplyScalar(brushSize));
+	      // FIXME: which of pointerPosition1 and pointerPosition2 should we use for each of these
+	      // currently we ignore pointerPosition2, but maybe one of these would be cool to be mapped
+	      var a = pointerPosition1.clone().add(dir.applyAxisAngle(axis, brushAngle).clone().multiplyScalar(brushSize));
+	      var b = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
+	      var c = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).clone().multiplyScalar(brushSize));
+	      var d = pointerPosition1.clone().add(dir.applyAxisAngle(axis, pi2).multiplyScalar(brushSize));
 
 	      var nidx = this.idx;
 	      // triangle 1
@@ -4230,9 +4279,9 @@
 	})();
 
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	AFRAME.registerBrush('spheres',
@@ -4250,7 +4299,7 @@
 	    },
 	    // This function is called every time we need to add a point to our stroke
 	    // It should returns true if the point is added correctly, false otherwise.
-	    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+	    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      // Create a new sphere mesh to insert at the given position
 	      var sphere = new THREE.Mesh(this.geometry, this.material);
 
@@ -4263,7 +4312,7 @@
 	      sphere.phase = Math.random() * Math.PI * 2;
 
 	      // Set the position of the sphere to match the controller positoin
-	      sphere.position.copy(pointerPosition);
+	      sphere.position.copy(pointerPosition1);
 	      sphere.rotation.copy(orientation);
 
 	      // Add the sphere to the object3D
@@ -4288,9 +4337,9 @@
 	);
 
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	AFRAME.registerBrush('cubes',
@@ -4305,12 +4354,12 @@
 	      });
 	      this.geometry = new THREE.BoxGeometry(1, 1, 1);
 	    },
-	    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+	    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      var box = new THREE.Mesh(this.geometry, this.material);
 
 	      var sca = pressure * this.data.size * Math.random();
 	      box.scale.set(sca, sca, sca);
-	      box.position.copy(pointerPosition);
+	      box.position.copy(pointerPosition1);
 	      box.rotation.copy(orientation);
 
 	      this.object3D.add(box);
@@ -4322,9 +4371,9 @@
 	);
 
 
-/***/ },
+/***/ }),
 /* 23 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	(function(){
@@ -4387,7 +4436,7 @@
 
 	        this.object3D.add(mesh);
 	      },
-	      addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+	      addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	        var uv = 0;
 	        for (i = 0; i < this.data.numPoints; i++) {
 	          this.uvs[ uv++ ] = i / (this.data.numPoints - 1);
@@ -4402,8 +4451,8 @@
 	        direction.applyQuaternion(orientation);
 	        direction.normalize();
 
-	        var posA = pointerPosition.clone();
-	        var posB = pointerPosition.clone();
+	        var posA = pointerPosition1.clone();
+	        var posB = pointerPosition2.clone();
 	        var brushSize = this.data.size * pressure;
 	        posA.add(direction.clone().multiplyScalar(brushSize / 2));
 	        posB.add(direction.clone().multiplyScalar(-brushSize / 2));
@@ -4433,9 +4482,9 @@
 	})();
 
 
-/***/ },
+/***/ }),
 /* 24 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* globals AFRAME THREE */
 	AFRAME.registerBrush('single-sphere',
@@ -4453,13 +4502,13 @@
 	      this.object3D.add(this.mesh);
 	      this.mesh.visible = false
 	    },
-	    addPoint: function (position, orientation, pointerPosition, pressure, timestamp) {
+	    addPoint: function (position, orientation, pointerPosition1, pointerPosition2, pressure, timestamp) {
 	      if (!this.firstPoint) {
-	        this.firstPoint = pointerPosition.clone();
+	        this.firstPoint = pointerPosition1.clone();
 	        this.mesh.position.set(this.firstPoint.x, this.firstPoint.y, this.firstPoint.z)
 	      }
 	      this.mesh.visible = true
-	      var distance = this.firstPoint.distanceTo(pointerPosition);
+	      var distance = this.firstPoint.distanceTo(pointerPosition1);
 	      this.mesh.scale.set(distance, distance, distance);
 	      return true;
 	    }
@@ -4468,5 +4517,5 @@
 	);
 
 
-/***/ }
+/***/ })
 /******/ ]);

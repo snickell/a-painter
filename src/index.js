@@ -20,7 +20,6 @@ require('./components/ui.js');
 require('./components/ui-raycaster.js');
 
 require('./brushes/potters-wheel.js');
-
 require('./brushes/line.js');
 require('./brushes/stamp.js');
 require('./brushes/spheres.js');
